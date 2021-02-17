@@ -11,6 +11,8 @@ app = Client(
 @app.on_message()
 
 def send_message(client: Client , msg: Message):
-    print(msg)
+    
+    client.send_message(msg.from_user.id, "Hi")
+    # print(msg)
 
 app.run()
