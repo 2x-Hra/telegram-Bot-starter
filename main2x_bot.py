@@ -6,3 +6,4 @@ app = Client(
     api_hash= "b892572907ad5fbce8a89a3ea947ed62"
 )
 
+app.run()
