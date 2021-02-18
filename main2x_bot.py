@@ -1,6 +1,6 @@
 from pyrogram import Client
 from  pyrogram.types import Message, ReplyKeyboardMarkup, KeyboardButton ,ReplyKeyboardRemove
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton , CallbackQuery
 
 
 app = Client("my_bot")
@@ -56,7 +56,10 @@ def handle_message(bot: Client , msg: Message):
             user.state = 0
             bot.send_message(user.id,'your age saved: ', reply_markup=MAIN_KEYBOARD)
 
-
+@app.on_callback_query()
+def handle_callback(bot: Client, query: CallbackQuery):
+    bot.answer_callback_query(query.id, f"got {query.data}!!", show_alert=True) # show alert is for POP message
+    
 
     #     bot.send_message(chat_id, bot_text,
     #                     reply_markup=ReplyKeyboardMarkup([['salam','khodafez'],['back']],resize_keyboard=True)
