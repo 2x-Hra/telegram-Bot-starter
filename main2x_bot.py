@@ -1,5 +1,5 @@
 from pyrogram import Client
-from  pyrogram.types import Message, ReplyKeyboardMarkup, KeyboardButton 
+from  pyrogram.types import Message, ReplyKeyboardMarkup, KeyboardButton ,ReplyKeyboardRemove
 
 
 app = Client("my_bot")
@@ -9,6 +9,8 @@ class MyUser:
     def __init__(self, user_id):
         self.id = user_id
         self.state = 0
+        self.name
+        self.age 
 
 def check_user(user_id): # check if user exists ,if not user will added to data
     for user in data:
@@ -18,13 +20,47 @@ def check_user(user_id): # check if user exists ,if not user will added to data
     data.append(new_user)
 
 @app.on_message()
-def send_message(bot: Client , msg: Message):
-    chat_id = msg.chat.id
-    bot_text = msg.text
-    
-    if msg.text:
-        
+def handle_message(bot: Client , msg: Message):
+    # chat_id = msg.chat.id
+    # bot_text = msg.text
 
+    user = check_user(msg.from_user.id)
+    if (msg.chat.type != 'private'): #
+        return
+    if msg.text:
+        if (msg.text == '/start' ):
+            bot.send_message(user.id, 'welcome' ,
+                                reply_markup=ReplyKeyboardMarkup([['setname','setage'],['my profile']],resize_keyboard=True)
+                            )
+        elif msg.text == 'set name':
+            user.state = 1
+            bot.send_message(user.id,'enter your name: ',
+                             reply_markup=ReplyKeyboardMarkup()
+                            )
+                            
+        elif msg.text == 'set age':    
+            user.state = 2
+            bot.send_message(user.id,'enter your age: ',
+                             reply_markup=ReplyKeyboardMarkup()
+                            )
+        elif msg.text == 'my profile':    
+            
+            bot.send_message(user.id,f'Name: {user.name}\nAge: {user.age}',
+                             reply_markup=ReplyKeyboardMarkup()
+                            )
+
+        elif user.state == 1:
+            user.name = msg.text
+            user.state = 0
+            bot.send_message(user.id,'your name saved: ',
+                    reply_markup=ReplyKeyboardMarkup()
+                )
+        elif user.state == 2:
+            user.age = msg.text
+            user.state = 0
+            bot.send_message(user.id,'your age saved: ',
+                    reply_markup=ReplyKeyboardMarkup()
+                )
 
     #     bot.send_message(chat_id, bot_text,
     #                     reply_markup=ReplyKeyboardMarkup([['salam','khodafez'],['back']],resize_keyboard=True)
