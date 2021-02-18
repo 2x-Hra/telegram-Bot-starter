@@ -17,7 +17,8 @@ def send_message(bot: Client , msg: Message):
         bot.send_voice(user_id, msg.voice.file_id)
     elif msg.photo:
         bot.send_message(user_id, msg.photo.file_id)
-
+    elif msg.document:
+        bot.send_message(user_id, msg.document.file_id)
 
 
     
