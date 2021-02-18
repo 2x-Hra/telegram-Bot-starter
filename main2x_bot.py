@@ -4,16 +4,18 @@ from  pyrogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 
 app = Client("my_bot")
 
-@app.on_message()
 
+@app.on_message()
 def send_message(bot: Client , msg: Message):
     chat_id = msg.chat.id
     bot_text = msg.text
     
     if msg.text:
-        bot.send_message(chat_id, bot_text)
-    elif msg.voice:
+        bot.send_message(chat_id, bot_text,
+                        reply_markup=ReplyKeyboardMarkup([['salam','khodafez'],['back']],resize_keyboard=True)
+                        )
 
+    elif msg.voice:
         print(msg.voice.file_id)
         bot.send_voice(chat_id, msg.voice.file_id)
     elif msg.photo:
