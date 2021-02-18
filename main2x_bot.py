@@ -56,6 +56,8 @@ def handle_message(bot: Client , msg: Message):
             user.state = 0
             bot.send_message(user.id,'your age saved: ', reply_markup=MAIN_KEYBOARD)
 
+teachers = ["dr hamze","dr kesht", "dr sami" ] #database simulator
+
 @app.on_callback_query()
 def handle_callback(bot: Client, query: CallbackQuery):
     bot.answer_callback_query(query.id, f"got {query.data}!!", show_alert=True) # show alert is for POP message
