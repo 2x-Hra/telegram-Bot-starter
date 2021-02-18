@@ -4,6 +4,10 @@ from  pyrogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 
 app = Client("my_bot")
 
+class MyUser:
+    def __init__(self, user_id):
+        self.id = user_id
+        self.state = 0
 
 @app.on_message()
 def send_message(bot: Client , msg: Message):
