@@ -6,19 +6,19 @@ app = Client("my_bot")
 @app.on_message()
 
 def send_message(bot: Client , msg: Message):
-    user_id = msg.from_user.id
+    chat_id = msg.chat.id
     bot_text = msg.text
     
     if msg.text:
-        bot.send_message(user_id, bot_text)
+        bot.send_message(chat_id, bot_text)
     elif msg.voice:
 
         print(msg.voice.file_id)
-        bot.send_voice(user_id, msg.voice.file_id)
+        bot.send_voice(chat_id, msg.voice.file_id)
     elif msg.photo:
-        bot.send_message(user_id, msg.photo.file_id)
+        bot.send_message(chat_id, msg.photo.file_id)
     elif msg.document:
-        bot.send_message(user_id, msg.document.file_id)
+        bot.send_message(chat_id, msg.document.file_id)
 
 
     
