@@ -4,8 +4,16 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton , Callback
 
 
 app = Client("my_bot")
-
 data =[]
+
+def IKM(data):
+    '''
+        Explanation :
+            
+
+    '''
+    return InlineKeyboardMarkup([[InlineKeyboardButton(text, cbd)] for text, cbd in data])
+
 MAIN_KEYBOARD = ReplyKeyboardMarkup([['setname','setage'],['my profile']],resize_keyboard=True)
 class MyUser:
     def __init__(self, user_id):
