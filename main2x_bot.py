@@ -4,10 +4,18 @@ from  pyrogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 
 app = Client("my_bot")
 
+data =[]
 class MyUser:
     def __init__(self, user_id):
         self.id = user_id
         self.state = 0
+
+def check_user(user_id): # check if user exists ,if not user will added to data
+    for user in data:
+        if user_id == user.id:
+            return user
+    new_user = MyUser(user_id)
+    data.append(new_user)
 
 @app.on_message()
 def send_message(bot: Client , msg: Message):
@@ -15,17 +23,20 @@ def send_message(bot: Client , msg: Message):
     bot_text = msg.text
     
     if msg.text:
-        bot.send_message(chat_id, bot_text,
-                        reply_markup=ReplyKeyboardMarkup([['salam','khodafez'],['back']],resize_keyboard=True)
-                        )
+        
 
-    elif msg.voice:
-        print(msg.voice.file_id)
-        bot.send_voice(chat_id, msg.voice.file_id)
-    elif msg.photo:
-        bot.send_message(chat_id, msg.photo.file_id)
-    elif msg.document:
-        bot.send_message(chat_id, msg.document.file_id)
+
+    #     bot.send_message(chat_id, bot_text,
+    #                     reply_markup=ReplyKeyboardMarkup([['salam','khodafez'],['back']],resize_keyboard=True)
+    #                     )
+
+    # elif msg.voice:
+    #     print(msg.voice.file_id)
+    #     bot.send_voice(chat_id, msg.voice.file_id)
+    # elif msg.photo:
+    #     bot.send_message(chat_id, msg.photo.file_id)
+    # elif msg.document:
+    #     bot.send_message(chat_id, msg.document.file_id)
 
 
     
