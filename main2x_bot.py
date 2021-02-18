@@ -31,6 +31,7 @@ def handle_message(bot: Client , msg: Message):
 
     if msg.text:
         if (msg.text == '/start' ):
+            user.state = 0
             bot.send_message(user.id, 'welcome' , reply_markup=MAIN_KEYBOARD )
 
         elif(user.state == 0 and msg.text == 'set name' ) :
