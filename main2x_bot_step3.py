@@ -8,8 +8,8 @@ data =[]
 
 def IKM(data):
     '''
-        Explanation : Create a inLine button with name :text and key : cbd
-        
+        Explanation : Create a inLine button with name: text and key: cbd
+
     '''
     return InlineKeyboardMarkup([[InlineKeyboardButton(text, cbd)] for text, cbd in data])
 
@@ -22,7 +22,11 @@ class MyUser:
         self.name = None
         self.age = None
 
-def check_user(user_id): # check if user exists ,if not user will added to data
+def check_user(user_id):
+    '''
+        This function check if user exists return the user , 
+        otherwise it will create a new user.
+    '''
     for user in data:
         if user_id == user.id:
             return user
@@ -32,6 +36,12 @@ def check_user(user_id): # check if user exists ,if not user will added to data
 
 @app.on_message()
 def handle_message(bot: Client , msg: Message):
+    '''
+        This function gonna handle what's coming from user,
+        and will reply to user
+        In step3 the bot show user some choices with inlineButtons and will change the text instantly
+    '''
+
     user = check_user(msg.from_user.id)
     if (msg.chat.type != 'private'): #
         return
@@ -49,6 +59,10 @@ teachers = ['دکتر کشتکاران', 'دکتر حمزه', 'دکتر سامی
 
 @app.on_callback_query()
 def handle_callback(bot: Client, query: CallbackQuery):
+    '''
+        this function for handling if user click on a INLINE BUTTON 
+        and it will take care of it with changing the name of the Teacher in tlgram dynamically
+    '''
     if query.data.startswith('TCH'):
         i = int(query.data[3:])
         bot.edit_message_text(query.message.chat.id, query.message.message_id, teachers[i],

@@ -14,7 +14,12 @@ class MyUser:
         self.name = None
         self.age = None
 
-def check_user(user_id): # check if user exists ,if not user will added to data
+def check_user(user_id): 
+    '''
+        This function check if user exists return the user , 
+        otherwise it will create a new user.
+        In step2 it will help the user make a profile using those buttons
+    '''
     for user in data:
         if user_id == user.id:
             return user
@@ -24,6 +29,10 @@ def check_user(user_id): # check if user exists ,if not user will added to data
     
 @app.on_message()
 def handle_message(bot: Client , msg: Message):
+    '''
+        This function gonna handle what's coming from user,
+        and will reply to user
+    '''
     user = check_user(msg.from_user.id)
     if (msg.chat.type != 'private'): #
         
