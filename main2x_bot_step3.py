@@ -34,26 +34,7 @@ def handle_message(bot: Client , msg: Message):
             user.state = 0
             bot.send_message(user.id, 'welcome' , reply_markup=MAIN_KEYBOARD )
 
-        elif(user.state == 0 and msg.text == 'set name' ) :
-            user.state = 1
-            bot.send_message(user.id,'enter your name: ', reply_markup=ReplyKeyboardRemove)
-                            
-        elif (user.state == 1 and msg.text == 'set age') :    
-            user.state = 2
-            bot.send_message(user.id,'enter your age: ', reply_markup=ReplyKeyboardRemove)
-        
-        elif (user.state == 2 and msg.text == 'my profile'):    
-            bot.send_message(user.id,f'Name: {user.name}\nAge: {user.age}')
-
-        elif user.state == 1:
-            user.name = msg.text
-            user.state = 0
-            bot.send_message(user.id,'your name saved: ', reply_markup=MAIN_KEYBOARD)
-        
-        elif user.state == 2:
-            user.age = msg.text
-            user.state = 0
-            bot.send_message(user.id,'your age saved: ', reply_markup=MAIN_KEYBOARD)
+ 
 
 teachers = ["dr hamze","dr kesht", "dr sami" ] #database simulator
 
