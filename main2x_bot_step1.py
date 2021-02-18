@@ -1,5 +1,7 @@
 from pyrogram import Client
 from pyrogram.types import Message
+from  pyrogram.types import Message, ReplyKeyboardMarkup, KeyboardButton ,ReplyKeyboardRemove
+
 
 api_id = 3477634
 api_hash = 'b892572907ad5fbce8a89a3ea947ed62'
@@ -9,13 +11,20 @@ client = Client(session_name='mybot', bot_token=bot_token, api_id=api_id, api_ha
 
 
 @client.on_message()
-def handle_message(bot: Client, message: Message):
-    user_id = message.from_user.id
-    if message.text:
-        bot.send_message(user_id, message.text)
-    elif message.voice:
-        print(message.voice)
-        # bot.send_voice(user_id, message.voice)
+def handle_message(bot: Client, msg: Message):
+    chat_id = msg.chat.id
+    bot_text = msg.text
+    if msg.text:
+        bot.send_message(chat_id, bot_text,
+                        reply_markup=ReplyKeyboardMarkup([['salam','khodafez'],['back']],resize_keyboard=True)
+                        )
 
+    elif msg.voice:
+        print(msg.voice.file_id)
+        bot.send_voice(chat_id, msg.voice.file_id)
+    elif msg.photo:
+        bot.send_message(chat_id, msg.photo.file_id)
+    elif msg.document:
+        bot.send_message(chat_id, msg.document.file_id)
 
 client.run()

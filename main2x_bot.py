@@ -23,8 +23,7 @@ def check_user(user_id): # check if user exists ,if not user will added to data
 
 @app.on_message()
 def handle_message(bot: Client , msg: Message):
-    # chat_id = msg.chat.id
-    # bot_text = msg.text
+
 
     user = check_user(msg.from_user.id)
     if (msg.chat.type != 'private'): #
@@ -63,17 +62,7 @@ def handle_callback(bot: Client, query: CallbackQuery):
     bot.answer_callback_query(query.id, f"got {query.data}!!", show_alert=True) # show alert is for POP message
     
 
-    #     bot.send_message(chat_id, bot_text,
-    #                     reply_markup=ReplyKeyboardMarkup([['salam','khodafez'],['back']],resize_keyboard=True)
-    #                     )
 
-    # elif msg.voice:
-    #     print(msg.voice.file_id)
-    #     bot.send_voice(chat_id, msg.voice.file_id)
-    # elif msg.photo:
-    #     bot.send_message(chat_id, msg.photo.file_id)
-    # elif msg.document:
-    #     bot.send_message(chat_id, msg.document.file_id)
 
 
     
