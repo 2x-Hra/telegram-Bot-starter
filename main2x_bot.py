@@ -1,5 +1,6 @@
 from pyrogram import Client
-from  pyrogram.types import Message
+from  pyrogram.types import Message, ReplyKeyboardMarkup, KeyboardButton 
+
 
 app = Client("my_bot")
 
