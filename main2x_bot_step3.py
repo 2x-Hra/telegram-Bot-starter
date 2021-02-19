@@ -53,7 +53,6 @@ def handle_message(bot: Client , msg: Message):
 
  
 
-
 teachers = ['دکتر کشتکاران', 'دکتر حمزه', 'دکتر سامی'] #database simulator
  
 
@@ -67,19 +66,4 @@ def handle_callback(bot: Client, query: CallbackQuery):
         i = int(query.data[3:])
         bot.edit_message_text(query.message.chat.id, query.message.message_id, teachers[i],
                               reply_markup=TEACHERS_INLINEKB)
-
-    elif (query.data == 'start'):
-       
-        bot.edit_inline_text(query.inline_message_id,'Game explanation',
-                                reply_markup=IKM([('پایان','end')])
-                            )
-    elif (query.data == 'end'):
-        bot.edit_inline_text(query.inline_message_id,'game ended')
-
-@app.on_inline_query()
-def handle_inline_query(bot: Client, query: InlineQuery):
-
-    results = [InlineQueryResultArticle('title', InputMessageContent("Lets play a game"))]
-
-    bot.answer_inline_query(query.id, results)
 app.run()

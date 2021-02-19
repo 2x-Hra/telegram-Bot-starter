@@ -3,11 +3,9 @@ from pyrogram.types import Message
 from  pyrogram.types import Message, ReplyKeyboardMarkup, KeyboardButton ,ReplyKeyboardRemove
 
 
-api_id = 3477634
-api_hash = 'b892572907ad5fbce8a89a3ea947ed62'
-bot_token = '1597619460:AAHSfzUFrAcjlqe7SpKK-PEUzN5lfo9bon4'
 
-client = Client(session_name='mybot', bot_token=bot_token, api_id=api_id, api_hash=api_hash)
+
+client = Client(session_name='mybot')
 
 
 @client.on_message()
