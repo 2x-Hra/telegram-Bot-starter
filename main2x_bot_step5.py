@@ -2,13 +2,16 @@ from pyrogram import Client
 from pyrogram.types import ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, \
     InlineQuery, InlineQueryResultArticle, InputTextMessageContent
 
-
+'''
+    it's another example of Inline use of telegram bot ,
+    after writing ur bot username instert space and enter whatever you want 
+    then send it .
+'''
 def IKM(data):
     return InlineKeyboardMarkup([[InlineKeyboardButton(text, cbd)] for text, cbd in data])
 
 
 app = Client('mybot')
-
 data = []
 
 
