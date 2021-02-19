@@ -14,7 +14,7 @@ def IKM(data):
     return InlineKeyboardMarkup([[InlineKeyboardButton(text, cbd)] for text, cbd in data])
 
 MAIN_KEYBOARD = ReplyKeyboardMarkup([['setname','setage'],['my profile']],resize_keyboard=True)
-TEACHERS_INLINEKB = IKM( [('Dr Keshtkaran', 'TCH0'), ('Dr Hamze', 'TCH1'), ('Dr Sami', 'TCH2')] )
+TEACHERS_INLINEKB = IKM( [('Dr Keshtkaran', 'TCH0'), ('Dr Hamze', 'TCH1'), ('Dr Sami', 'TCH2')] ) 
 class MyUser:
     def __init__(self, user_id):
         self.id = user_id
