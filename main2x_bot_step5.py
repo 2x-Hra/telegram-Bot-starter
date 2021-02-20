@@ -3,7 +3,7 @@ from pyrogram.types import ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyb
     InlineQuery, InlineQueryResultArticle, InputTextMessageContent
 
 '''
-    it's another example of Inline use of telegram bot ,
+    it's another example of Inline use of telegram bot , for counting Likes,
     after writing ur bot username instert space and enter whatever you want 
     then send it .
 '''
